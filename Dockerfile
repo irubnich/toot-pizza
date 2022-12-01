@@ -88,10 +88,10 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN apt-get update && \
   apt-get -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	  libicu66 libidn11 libyaml-0-2 \
+	  libicu66 libidn11 libyaml-0-2 redis-server \
 	  file ca-certificates tzdata libreadline8 gcc tini apt-utils && \
 	ln -s /opt/mastodon /mastodon && \
-	gem install bundler && \
+	gem install bundler foreman && \
 	rm -rf /var/cache && \
 	rm -rf /var/lib/apt/lists/*
 

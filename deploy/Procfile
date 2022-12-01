@@ -1,0 +1,4 @@
+web: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 8080"
+redis: redis-server
+sidekiq: bundle exec sidekiq
+streaming: PORT=4000 node ./streaming

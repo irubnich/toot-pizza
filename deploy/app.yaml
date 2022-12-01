@@ -1,2 +1,13 @@
 runtime: custom
 env: flex
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 2
+  memory_gb: 4
+
+network:
+  name: default
+  forwarded_ports:
+    - 4000

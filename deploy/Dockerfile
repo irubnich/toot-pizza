@@ -1,3 +1,6 @@
-FROM tootsuite/mastodon:v4.0.2
+FROM gcr.io/toot-pizza/toot-pizza-mastodon:v1
 
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+COPY Procfile .
+EXPOSE 8080
+
+CMD ["foreman", "start", "-f", "Procfile"]
