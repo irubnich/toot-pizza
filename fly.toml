@@ -1,0 +1,51 @@
+app = "toot-pizza"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+# [deploy]
+#   release_command = "bin/rails db:migrate"
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+  processes = ["web"]
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[services]]
+  processes = ["streaming"]
+  internal_port = 4000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 4000
+
+[[statics]]
+  guest_path = "/opt/mastodon/public"
+  url_prefix = "/"
+
+[processes]
+  web = "bundle exec rails s -p 3000"
+  sidekiq = "bundle exec sidekiq"
+  streaming = "node ./streaming"
+
+[env]
+  LOCAL_DOMAIN = "toot.pizza"
+  STREAMING_API_BASE_URL = "https://toot.pizza:4000"
+  ALTERNATE_DOMAINS = "toot-pizza.fly.dev"
+  SINGLE_USER_MODE = "false"
+  PREPARED_STATEMENTS = "false"
+  S3_ENABLED = "true"
+  S3_PROTOCOL = "https"
+  S3_BUCKET = "toot-pizza"
+  S3_REGION = "us-east-1"
+  S3_HOSTNAME = "s3.us-east-1.amazonaws.com"
+  S3_ALIAS_HOST = "assets.toot.pizza"
