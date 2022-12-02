@@ -39,7 +39,7 @@ kill_timeout = 5
 
 [env]
   LOCAL_DOMAIN = "toot.pizza"
-  STREAMING_API_BASE_URL = "https://toot.pizza:4000"
+  STREAMING_API_BASE_URL = "wss://toot.pizza:4000"
   ALTERNATE_DOMAINS = "toot-pizza.fly.dev"
   SINGLE_USER_MODE = "false"
   PREPARED_STATEMENTS = "false"
@@ -49,3 +49,4 @@ kill_timeout = 5
   S3_REGION = "us-east-1"
   S3_HOSTNAME = "s3.us-east-1.amazonaws.com"
   S3_ALIAS_HOST = "assets.toot.pizza"
+  WEB_CONCURRENCY = 2
