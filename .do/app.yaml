@@ -12,7 +12,7 @@ services:
   instance_size_slug: professional-s
   routes:
   - path: /
-  source_dir: /
+  source_dir: /.do
   git:
     repo_clone_url: https://github.com/irubnich/toot-pizza.git
     branch: do-app
@@ -28,7 +28,7 @@ services:
   instance_size_slug: professional-xs
   routes:
   - path: /streaming
-  source_dir: /
+  source_dir: /.do
   git:
     repo_clone_url: https://github.com/irubnich/toot-pizza.git
     branch: do-app
