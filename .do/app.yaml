@@ -1,0 +1,164 @@
+name: toot-pizza
+region: nyc
+
+domains:
+- domain: toot.pizza
+  type: PRIMARY
+
+services:
+- name: web
+  http_port: 3000
+  instance_count: 1
+  instance_size_slug: professional-s
+  routes:
+  - path: /
+  source_dir: /
+  image:
+    registry_type: DOCKER_HUB
+    registry: irubnich
+    repository: mastodon
+    tag: v3
+  alerts:
+  - operator: GREATER_THAN
+    rule: MEM_UTILIZATION
+    value: 80
+    window: FIVE_MINUTES
+- name: streaming
+  http_port: 4000
+  instance_count: 1
+  instance_size_slug: professional-xs
+  routes:
+  - path: /streaming
+  source_dir: /
+  image:
+    registry_type: DOCKER_HUB
+    registry: irubnich
+    repository: mastodon-streaming
+    tag: v2
+  alerts:
+  - operator: GREATER_THAN
+    rule: MEM_UTILIZATION
+    value: 80
+    window: FIVE_MINUTES
+
+databases:
+- cluster_name: toot-pizza-pg
+  db_name: mastodon_production
+  db_user: doadmin
+  engine: PG
+  name: toot-pizza-pg
+  production: true
+  size: professional-xs
+  version: "14"
+
+envs:
+- key: LOCAL_DOMAIN
+  scope: RUN_AND_BUILD_TIME
+  value: "toot.pizza"
+- key: STREAMING_API_BASE_URL
+  scope: RUN_AND_BUILD_TIME
+  value: "wss://toot.pizza/streaming"
+- key: ALTERNATE_DOMAINS
+  scope: RUN_AND_BUILD_TIME
+  value: "orca-app-nzju2.ondigitalocean.app"
+- key: SINGLE_USER_MODE
+  scope: RUN_AND_BUILD_TIME
+  value: "false"
+- key: PREPARED_STATEMENTS
+  scope: RUN_AND_BUILD_TIME
+  value: "false"
+- key: S3_ENABLED
+  scope: RUN_AND_BUILD_TIME
+  value: "true"
+- key: S3_PROTOCOL
+  scope: RUN_AND_BUILD_TIME
+  value: "https"
+- key: S3_BUCKET
+  scope: RUN_AND_BUILD_TIME
+  value: "toot-pizza"
+- key: S3_REGION
+  scope: RUN_AND_BUILD_TIME
+  value: "us-east-1"
+- key: S3_HOSTNAME
+  scope: RUN_AND_BUILD_TIME
+  value: "s3.us-east-1.amazonaws.com"
+- key: S3_ALIAS_HOST
+  scope: RUN_AND_BUILD_TIME
+  value: "assets.toot.pizza"
+- key: WEB_CONCURRENCY
+  scope: RUN_AND_BUILD_TIME
+  value: "2"
+- key: STREAMING_CLUSTER_NUM
+  scope: RUN_AND_BUILD_TIME
+  value: "1"
+- key: DB_PORT
+  scope: RUN_AND_BUILD_TIME
+  value: "25061"
+- key: SMTP_PORT
+  scope: RUN_AND_BUILD_TIME
+  value: "587"
+- key: VAPID_PUBLIC_KEY
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:++goNaOhvP1exKeR6Cc6cu43cw69QoNv:F+oBHc7C5hfhF8pfD9GJ8Yu0ou4I4n+cxRTAnXiYqxLEgUviU+xgZhSJGRilLBsTFa88PqRuGHartDQqEd9bijEQ7vF/QurBs4vgO7ZdcG5IHMfPiM8az1BTXiyu+2UTRojJON7RcwQ=]
+- key: DB_NAME
+  scope: RUN_AND_BUILD_TIME
+  value: tootdb-pool
+- key: SMTP_OPENSSL_VERIFY_MODE
+  scope: RUN_AND_BUILD_TIME
+  value: none
+- key: SMTP_FROM_ADDRESS
+  scope: RUN_AND_BUILD_TIME
+  value: Mastodon <notifications@toot.pizza>
+- key: SMTP_LOGIN
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:CtfKWo7LZCg6nj4Htu8djGL7QS/vREAu:Q8/jspOgUoSZiKRc80oPj8DacP2CqWWBDrKqHDvp9pKThPiz]
+- key: DB_SSLMODE
+  scope: RUN_AND_BUILD_TIME
+  value: require
+- key: VAPID_PRIVATE_KEY
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:rU7X+xH/OJRlVSdUSH0IDDShXMzrVr+j:u3Ep9uEUUA4JcMnzoN8Io2UpI2UNzcOqxvMqp5A14rLFVrjQ7TD9aTODwskPsVpMk46o5olMGkpJWEKZ]
+- key: SMTP_AUTH_METHOD
+  scope: RUN_AND_BUILD_TIME
+  value: plain
+- key: AWS_ACCESS_KEY_ID
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:bHTzUFHy6ghb8UpCwLgCvmKfew9Gr8Lx:TMIrRmng+q/HzIAT+tiH56puqPL+EOci5BPY0mJc9FoKG7+M]
+- key: OTP_SECRET
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:A+slTgRO6eHEl/HvFH6iqimGSP/wVZEA:p+bI4B+ndnKsM2vF38Pdo69zkCD31GW4dNy3jBIoBUhoNrGdkGSaYrl0MkoPJIim6uv46sbT0v8MkZPtCZ24xcYzmWJB3exbveSb48u/MBgNeyQ/nNIJwz7ne0h8SfP4LUSbeZnlyQvFn+fJBhVtpVTqnLQZA6T22WL1KARqsAB7oSm28JuLxKLv/0T3L7u9]
+- key: AWS_SECRET_ACCESS_KEY
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:5HXZ2Q2ss+NlBujnjWwuKOrltVSI9WV3:Rhj0ZgAghovVvn04pLX1vAw0Cx1L91mzL0ZzrUCG2U2zztjoIp0y2cKcV/3+MX/J0caTD5TJ7dc=]
+- key: DB_PASS
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:6G4HO4oBNVC7LqKvd4tdkD3EkS1eQlrO:4sWILmqVv1V1ytvZidv5i3gncMAJtJkCxIT+dy4PxhNYzZ5VGVdHOA==]
+- key: SECRET_KEY_BASE
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:u3LT70AUvBLstKMZSxM2wnmcY1jHP8UP:uBHXppnnn/hs6PxVKbY0y5k0Z78yvH6lF0EyOfOHhaUDqFTicxGBu3BsvDhAJTfrekScDVa9qAle/VPhE2L+b60+pZmwh1p9xgsKO3ogkClb28vM1hZ2Cjxy2H8s9bPFMKPp00Idb4EvNIkUCt5EmPs4tUgB+afyRowH3x08nCu80ZyL++jrbINDE0r9klKp]
+- key: SMTP_PASSWORD
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:9LBG6BxIY5lfJw8p7I/nwgayMVzI82VF:Fu1dvHn8LAwMfCSBVfgVN16N0GflOdkrs24o4J5q5Q+x+770FVCLyDp+y/P/41odrQ6Ux6qX4H1iJZL/]
+- key: SMTP_SERVER
+  scope: RUN_AND_BUILD_TIME
+  value: email-smtp.us-east-1.amazonaws.com
+- key: DB_HOST
+  scope: RUN_AND_BUILD_TIME
+  value: toot-pizza-pg-do-user-409046-0.b.db.ondigitalocean.com
+- key: REDIS_URL
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:Mp+2KRtqE+/6QcIsz/I37uXA++RPTDK6:kceABbx9QEdw0sZkmUDPxgkHa6cebeZEG+vYAI3j3ZI20YGf19FAtA0Oc4CyCEZtbyoxBCVqSO5KnxyKh2TojS+CxeMJwbPi/iH1UmiQ+RFWCghfhRQ11wQB4y7aU7xgiyNGescXU3TBBXtfvmVGfKR7FUW51tE+LOol]
+- key: DB_USER
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:fZuE/DepdCweQWKI0/Jc2PL22fhtnoTX:qC/E3fg++t/Ohy75EpRdFJ1gz9uOE+c=]
