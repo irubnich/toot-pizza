@@ -1,0 +1,2 @@
+# toot.pizza via Digital Ocean App Platform
+This folder contains files that define deployment of [toot.pizza](https://toot.pizza) on the [Digital Ocean App Platform](https://www.digitalocean.com/products/app-platform).
