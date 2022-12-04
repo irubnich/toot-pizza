@@ -19,6 +19,14 @@ kill_timeout = 5
     handlers = ["tls", "http"]
     port = 443
 
+  [[services.http_checks]]
+    interval = "10s"
+    grace_period = "5s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    timeout = "2s"
+
 [[services]]
   processes = ["streaming"]
   internal_port = 4000
@@ -27,6 +35,11 @@ kill_timeout = 5
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 4000
+
+  [[services.tcp_checks]]
+    grace_period = "5s"
+    interval = "10s"
+    timeout = "2s"
 
 [[statics]]
   guest_path = "/opt/mastodon/public"
