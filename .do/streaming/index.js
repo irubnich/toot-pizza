@@ -143,7 +143,7 @@ const startWorker = async (workerId) => {
   if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
     pgConfigs.development.ssl = true;
     pgConfigs.production.ssl = {
-      rejectUnauthorized: false
+      ca: fs.readFileSync('db-cert.cer').toString(),
     };
   }
 

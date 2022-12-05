@@ -14,5 +14,6 @@ RUN wget "https://github.com/DarthSim/overmind/releases/download/v2.3.0/overmind
 
 ADD Procfile.workers ./Procfile
 ADD streaming/index.js ./streaming-api-fixed.js
+ADD streaming/ca-certificate.cer ./db-cert.cer
 
 CMD ["./overmind", "start"]
