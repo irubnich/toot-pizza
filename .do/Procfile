@@ -1,2 +1,2 @@
-rails: bin/rails s -p 3000
+streaming-api: BIND=0.0.0.0 PORT=4000 node ./streaming
 sidekiq: bundle exec sidekiq
