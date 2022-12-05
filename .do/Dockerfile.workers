@@ -12,6 +12,6 @@ RUN wget "https://github.com/DarthSim/overmind/releases/download/v2.3.0/overmind
   gunzip overmind.gz && \
   chmod +x overmind
 
-ADD Procfile .
+ADD Procfile streaming/index.js ./
 
 CMD ["./overmind", "start"]
