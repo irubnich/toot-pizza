@@ -13,6 +13,6 @@ RUN wget "https://github.com/DarthSim/overmind/releases/download/v2.3.0/overmind
   chmod +x overmind
 
 ADD Procfile.workers ./Procfile
-ADD streaming/index.js ./
+ADD streaming/index.js ./streaming-api-fixed.js
 
 CMD ["./overmind", "start"]

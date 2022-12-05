@@ -1,2 +1,2 @@
-streaming-api: BIND=0.0.0.0 PORT=4000 node ./streaming
+streaming-api: BIND=0.0.0.0 PORT=4000 node streaming-api-fixed.js
 sidekiq: bundle exec sidekiq
