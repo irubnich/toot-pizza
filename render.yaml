@@ -1,5 +1,17 @@
 services:
   - type: web
+    name: toot-pizza-nginx
+    region: ohio
+    env: docker
+    plan: starter
+    repo: https://github.com/irubnich/toot-pizza.git
+    branch: render
+    pullRequestPreviewsEnabled: true
+    dockerfilePath: ./deploy/Dockerfile.nginx
+    dockerContext: ./deploy
+    numInstances: 1
+    healthCheckPath: /health
+  - type: web
     name: toot-pizza-web
     region: ohio
     env: docker
