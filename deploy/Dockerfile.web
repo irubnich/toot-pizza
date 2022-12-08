@@ -1,1 +1,1 @@
-FROM linuxserver/mastodon:v4.0.2
+FROM linuxserver/mastodon:4.0.2
