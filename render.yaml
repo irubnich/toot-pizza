@@ -15,5 +15,3 @@ services:
     healthCheckPath: /health
     envVars:
       - fromGroup: toot-pizza
-      - key: PORT
-        value: 3000
