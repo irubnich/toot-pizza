@@ -22,7 +22,7 @@ services:
     name: toot-pizza-workers
     region: ohio
     env: docker
-    plan: starter
+    plan: standard
     repo: https://github.com/irubnich/toot-pizza.git
     branch: render
     autoDeploy: false
