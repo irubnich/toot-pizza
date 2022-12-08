@@ -3,9 +3,21 @@ services:
     name: toot-pizza-web
     region: ohio
     env: docker
-    plan: standard
+    plan: starter
     domains:
       - toot.pizza
+    repo: https://github.com/irubnich/toot-pizza.git
+    branch: render
+    pullRequestPreviewsEnabled: true
+    dockerfilePath: ./deploy/Dockerfile.nginx
+    dockerContext: ./deploy
+    numInstances: 1
+    healthCheckPath: /health
+  - type: pserv
+    name: toot-pizza-rails
+    region: ohio
+    env: docker
+    plan: standard
     repo: https://github.com/irubnich/toot-pizza.git
     branch: render
     pullRequestPreviewsEnabled: true
@@ -17,7 +29,7 @@ services:
       - fromGroup: toot-pizza
       - key: PORT
         value: 3000
-  - type: web
+  - type: pserv
     name: toot-pizza-workers
     region: ohio
     env: docker
