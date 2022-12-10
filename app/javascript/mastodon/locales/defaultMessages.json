@@ -608,7 +608,7 @@
         "id": "status.cannot_reblog"
       },
       {
-        "defaultMessage": "Favourite",
+        "defaultMessage": "Favorite",
         "id": "status.favourite"
       },
       {
@@ -818,7 +818,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -1144,7 +1144,7 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "navigation_bar.favourites"
       },
       {
@@ -1359,7 +1359,7 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "navigation_bar.favourites"
       },
       {
@@ -1653,7 +1653,7 @@
         "id": "search.search_or_paste"
       },
       {
-        "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
+        "defaultMessage": "Simple text returns statuses you have written, favorited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
         "id": "search_popout.tips.full_text"
       },
       {
@@ -2114,11 +2114,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "column.favourites"
       },
       {
-        "defaultMessage": "You don't have any favourite posts yet. When you favourite one, it will show up here.",
+        "defaultMessage": "You don't have any favorite posts yet. When you favorite one, it will show up here.",
         "id": "empty_column.favourited_statuses"
       }
     ],
@@ -2131,7 +2131,7 @@
         "id": "refresh"
       },
       {
-        "defaultMessage": "No one has favourited this post yet. When someone does, they will show up here.",
+        "defaultMessage": "No one has favorited this post yet. When someone does, they will show up here.",
         "id": "empty_column.favourites"
       }
     ],
@@ -2394,7 +2394,7 @@
         "id": "navigation_bar.follow_requests"
       },
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "navigation_bar.favourites"
       },
       {
@@ -2567,11 +2567,11 @@
         "id": "interaction_modal.description.reblog"
       },
       {
-        "defaultMessage": "Favourite {name}'s post",
+        "defaultMessage": "Favorite {name}'s post",
         "id": "interaction_modal.title.favourite"
       },
       {
-        "defaultMessage": "With an account on Mastodon, you can favourite this post to let the author know you appreciate it and save it for later.",
+        "defaultMessage": "With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.",
         "id": "interaction_modal.description.favourite"
       },
       {
@@ -2603,7 +2603,7 @@
         "id": "interaction_modal.on_another_server"
       },
       {
-        "defaultMessage": "Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.",
+        "defaultMessage": "Copy and paste this URL into the search field of your favorite Mastodon app or the web interface of your Mastodon server.",
         "id": "interaction_modal.other_server_instructions"
       }
     ],
@@ -2636,7 +2636,7 @@
         "id": "keyboard_shortcuts.profile"
       },
       {
-        "defaultMessage": "to favourite",
+        "defaultMessage": "to favorite",
         "id": "keyboard_shortcuts.favourite"
       },
       {
@@ -2720,7 +2720,7 @@
         "id": "keyboard_shortcuts.start"
       },
       {
-        "defaultMessage": "to open favourites list",
+        "defaultMessage": "to open favorites list",
         "id": "keyboard_shortcuts.favourites"
       },
       {
@@ -2942,7 +2942,7 @@
         "id": "notifications.column_settings.follow_request"
       },
       {
-        "defaultMessage": "Favourites:",
+        "defaultMessage": "Favorites:",
         "id": "notifications.column_settings.favourite"
       },
       {
@@ -2983,7 +2983,7 @@
         "id": "notifications.filter.mentions"
       },
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "notifications.filter.favourites"
       },
       {
@@ -3034,7 +3034,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{name} favourited your status",
+        "defaultMessage": "{name} favorited your status",
         "id": "notification.favourite"
       },
       {
@@ -3183,7 +3183,7 @@
         "id": "status.cannot_reblog"
       },
       {
-        "defaultMessage": "Favourite",
+        "defaultMessage": "Favorite",
         "id": "status.favourite"
       },
       {
@@ -3524,7 +3524,7 @@
         "id": "status.cannot_reblog"
       },
       {
-        "defaultMessage": "Favourite",
+        "defaultMessage": "Favorite",
         "id": "status.favourite"
       },
       {
@@ -3651,7 +3651,7 @@
         "id": "confirmations.redraft.confirm"
       },
       {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
+        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.",
         "id": "confirmations.redraft.message"
       },
       {
@@ -4141,7 +4141,7 @@
         "id": "navigation_bar.direct"
       },
       {
-        "defaultMessage": "Favourites",
+        "defaultMessage": "Favorites",
         "id": "navigation_bar.favourites"
       },
       {
@@ -4191,7 +4191,7 @@
         "id": "sign_in_banner.create_account"
       },
       {
-        "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+        "defaultMessage": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
         "id": "sign_in_banner.text"
       },
       {
