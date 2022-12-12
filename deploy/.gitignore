@@ -1,0 +1,11 @@
+public/system/*
+!public/system/.keep
+
+redis/*
+!redis/.keep
+
+nginx/cache/*
+!nginx/cache/.keep
+
+nginx/certs/*
+!nginx/certs/.keep

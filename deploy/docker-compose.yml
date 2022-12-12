@@ -1,0 +1,111 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.23.2
+    restart: always
+    depends_on:
+      - rails
+    networks:
+      - internal_network
+      - external_network
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - ./nginx/tmp:/var/run/nginx
+      - ./nginx/cache:/var/cache/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certs:/etc/nginx/certs
+
+  rails:
+    build: .
+    restart: always
+    env_file: .env.production
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      # prettier-ignore
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
+    ports:
+      - '127.0.0.1:3000:3000'
+    depends_on:
+      - redis
+    volumes:
+      - ./public/system:/mastodon/public/system
+
+  streaming:
+    build: .
+    restart: always
+    env_file: .env.production
+    environment:
+      - NODE_EXTRA_CA_CERTS=db-cert.crt
+    command: node ./streaming
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      # prettier-ignore
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
+    ports:
+      - '127.0.0.1:4000:4000'
+    depends_on:
+      - redis
+
+  sidekiq:
+    build: .
+    restart: always
+    env_file: .env.production
+    command: bundle exec sidekiq
+    networks:
+      - external_network
+      - internal_network
+    depends_on:
+      - redis
+    volumes:
+      - ./public/system:/mastodon/public/system
+    healthcheck:
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+
+  redis:
+    restart: always
+    image: redis:7-alpine
+    networks:
+      - internal_network
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+    volumes:
+      - ./redis:/data
+
+  dd-agent:
+    image: gcr.io/datadoghq/agent:7
+    pid: host
+    restart: always
+    env_file: .env.production
+    ports:
+      - 8126:8216
+    environment:
+      - DD_SITE=datadoghq.com
+      - DD_LOGS_ENABLED=true
+      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+      - DD_CONTAINER_EXCLUDE=name:dd-agent
+      - DD_PROCESS_AGENT_ENABLED=true
+      - DD_APM_ENABLED=true
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - /sys/kernel/debug:/sys/kernel/debug
+      - /etc/passwd:/etc/passwd:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
