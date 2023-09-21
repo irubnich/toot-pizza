@@ -226,6 +226,12 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     date (3.3.3)
+    ddtrace (1.14.0)
+      debase-ruby_core_source (= 3.2.1)
+      libdatadog (~> 3.0.0.1.0)
+      libddwaf (~> 1.9.0.0.0)
+      msgpack
+    debase-ruby_core_source (3.2.1)
     debug_inspector (1.1.0)
     devise (4.9.2)
       bcrypt (~> 3.0)
@@ -425,6 +431,9 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
+    libdatadog (3.0.0.1.0)
+    libddwaf (1.9.0.0.1)
+      ffi (~> 1.0)
     link_header (0.0.8)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
@@ -842,6 +851,7 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   database_cleaner-active_record
+  ddtrace
   devise (~> 4.9)
   devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
